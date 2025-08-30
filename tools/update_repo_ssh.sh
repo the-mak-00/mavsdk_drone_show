@@ -42,9 +42,9 @@ REPAIR_TIMEOUT=120            # Timeout (in seconds) for git-repair (2 minutes)
 SITL_BRANCH="docker-sitl-2"
 REAL_BRANCH="main-candidate"
 
-DEFAULT_REPO_DIR="${HOME}/mavsdk_drone_show"
-DEFAULT_SSH_GIT_URL="git@github.com:alireza787b/mavsdk_drone_show.git"
-DEFAULT_HTTPS_GIT_URL="https://github.com/alireza787b/mavsdk_drone_show.git"
+DEFAULT_REPO_DIR="${HOME}/mavsdk_drone_show_mak00"
+DEFAULT_SSH_GIT_URL="git@github.com:the-mak-00/mavsdk_drone_show_mak00.git"
+DEFAULT_HTTPS_GIT_URL="https://github.com/the-mak-00/mavsdk_drone_show_mak00.git"
 
 # LED control command (assumes virtualenv Python path)
 LED_CMD="/home/droneshow/mavsdk_drone_show/venv/bin/python /home/droneshow/mavsdk_drone_show/led_indicator.py"

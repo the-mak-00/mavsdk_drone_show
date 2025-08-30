@@ -30,8 +30,8 @@
 set -euo pipefail
 
 # Configuration variables
-REPO_DIR="${HOME}/mavsdk_drone_show"        # Modify this path as needed
-GIT_URL="https://github.com/alireza787b/mavsdk_drone_show.git"  # HTTPS URL for the repo
+REPO_DIR="${HOME}/mavsdk_drone_show_mak00"        # Modify this path as needed
+GIT_URL="https://github.com/the-mak-00/mavsdk_drone_show_mak00.git"  # HTTPS URL for the repo
 LOG_FILE="${REPO_DIR}/update_repo.log"
 
 # Maximum number of retries for network operations
