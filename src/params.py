@@ -61,7 +61,7 @@ class Params:
     GIT_REPO_URL = os.environ.get('MDS_REPO_URL', 'git@github.com:the-mak-00/mavsdk_drone_show.git')
     GIT_BRANCH = os.environ.get('MDS_BRANCH', 'main')
     
-    connectivity_check_ip = "8.8.8.8"  # Default IP to ping eg. 8.8.8.8 for the gcs IP
+    connectivity_check_ip = "192.168.145.101"  # Default IP to ping eg. 8.8.8.8 for the gcs IP
     connectivity_check_port = 5000        # Default port to ping eg. 80 for the gcs backend port
     connectivity_check_interval = 10    # Interval in seconds between connectivity checks
 
