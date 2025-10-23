@@ -151,7 +151,7 @@ class Params:
 
     # MAVLink Connection Configuration
     serial_mavlink = True              # Use serial connection for MAVLink
-    serial_mavlink_port = '/dev/ttyS0' # Serial port for Raspberry Pi Zero TTL
+    serial_mavlink_port = '/dev/ttyAMA0' # Serial port for Raspberry Pi Zero TTL
     serial_baudrate = 57600            # Serial connection baudrate
     sitl_port = 14550                  # SITL port
     hw_udp_port = 14550
