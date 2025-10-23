@@ -71,7 +71,7 @@ Usage: $(basename "$0") [OPTIONS]
 
 Options:
   -b, --branch NAME           Specify Git branch name (default: main)
-  -d, --drone-id ID           Specify Drone ID (e.g., 1, 2) [Required]
+  -d, --drone_atsm-id ID           Specify Drone ID (e.g., 1, 2) [Required]
   -k, --netbird-key KEY       Specify Netbird Setup Key [Required unless --skip-netbird is used]
   -u, --management-url URL    Specify Netbird Management URL (default: https://nb1.joomtalk.ir)
       --repo-url URL          Specify Git repository URL (default: git@github.com:the-mak-00/mavsdk_drone_show.git)
@@ -108,7 +108,7 @@ EOF
 # =============================================================================
 parse_args() {
     # Use getopt for parsing both short and long options
-    PARSED_ARGS=$(getopt -o b:d:k:u:h --long branch:,drone-id:,netbird-key:,management-url:,repo-url:,ssh-key-path:,skip-netbird,skip-mavsdk,skip-gpio,skip-sudoers,help -- "$@")
+    PARSED_ARGS=$(getopt -o b:d:k:u:h --long branch:,drone_atsm-id:,netbird-key:,management-url:,repo-url:,ssh-key-path:,skip-netbird,skip-mavsdk,skip-gpio,skip-sudoers,help -- "$@")
     if [[ $? -ne 0 ]]; then
         usage
         exit 1
@@ -122,7 +122,7 @@ parse_args() {
                 BRANCH_NAME="$2"
                 shift 2
                 ;;
-            -d|--drone-id)
+            -d|--drone_atsm-id)
                 DRONE_ID="$2"
                 shift 2
                 ;;
@@ -237,7 +237,7 @@ setup_ssh_key_for_git() {
         # Generate a new SSH key pair without a passphrase
         echo "No SSH key found at $SSH_KEY_PATH"
         echo "Generating a new SSH key pair..."
-        ssh-keygen -t rsa -b 4096 -f "$SSH_KEY_PATH" -N "" -C "drone$DRONE_ID@$(hostname)"
+        ssh-keygen -t rsa -b 4096 -f "$SSH_KEY_PATH" -N "" -C "drone_atsm$DRONE_ID@$(hostname)"
         echo "SSH key generated at $SSH_KEY_PATH"
     fi
 
@@ -349,12 +349,12 @@ setup_git() {
 # Function: Configure Hostname
 # =============================================================================
 configure_hostname() {
-    echo "Configuring hostname to 'drone$DRONE_ID'..."
-    echo "drone$DRONE_ID" | sudo tee /etc/hostname > /dev/null
-    sudo sed -i "s/.*127.0.1.1.*/127.0.1.1\tdrone$DRONE_ID/" /etc/hosts
+    echo "Configuring hostname to 'drone_atsm$DRONE_ID'..."
+    echo "drone_atsm$DRONE_ID" | sudo tee /etc/hostname > /dev/null
+    sudo sed -i "s/.*127.0.1.1.*/127.0.1.1\tdrone_atsm$DRONE_ID/" /etc/hosts
 
     echo "Reloading hostname service to apply changes immediately..."
-    sudo hostnamectl set-hostname "drone$DRONE_ID"
+    sudo hostnamectl set-hostname "drone_atsm$DRONE_ID"
     sudo systemctl restart systemd-logind
 
     echo "Restarting avahi-daemon to apply hostname changes..."
@@ -513,7 +513,7 @@ setup_netbird() {
 
     echo "Reconnecting to Netbird with new settings..."
     netbird up --management-url "$MANAGEMENT_URL" --setup-key "$NETBIRD_KEY"
-    echo "Netbird reconnected with new hostname 'drone$DRONE_ID'."
+    echo "Netbird reconnected with new hostname 'drone_atsm$DRONE_ID'."
     unset NETBIRD_KEY
 
     echo "Netbird setup complete."
